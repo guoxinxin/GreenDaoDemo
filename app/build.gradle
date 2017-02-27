@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'//千万记得添加这个，要不然会报错的
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.dev.greendaodemo"
+        minSdkVersion 17
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/java-gen']
+        }
+    }
+
+    greendao{
+        schemaVersion 1//版本号，升级时可配置
+        daoPackage 'com.wyk.greendaodemo.greendao.gen'//通过gradle插件生成的数据库相关文件的包名，默认为你的entity所在的包名
+        targetGenDir 'src/main/java'//就是我们上面说到的自定义生成数据库文件的目录了
+    }
+
+}
+
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'org.greenrobot:greendao:3.2.0'
+    testCompile 'junit:junit:4.12'
+}
