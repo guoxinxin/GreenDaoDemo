@@ -27,8 +27,8 @@ import org.greenrobot.greendao.annotation.Unique;
  */
 @Entity
 public class Shop {
-    private static final int TYPE_CART=0x01;//购物车列表
-    private static final int TYPE_LOVE=0x02;//收藏的列表
+    public static final int TYPE_CART=0x01;//购物车列表
+    public static final int TYPE_LOVE=0x02;//收藏的列表
     @Id(autoincrement = true)
     private long id ;//不能使用int,设置为自增
     @Unique
