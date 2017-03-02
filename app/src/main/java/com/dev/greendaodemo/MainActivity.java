@@ -58,14 +58,16 @@ public class MainActivity extends Activity {
         Shop shop1 = new Shop();
         switch (view.getId()) {
             case R.id.insert:
-                   shop1.setAddress(address.getText().toString());
-                    shop1.setName(name.getText().toString());
+                shop1.setAddress(address.getText().toString());
+                shop1.setName(name.getText().toString());
                 shop1.setId(Integer.parseInt(id.getText().toString()));
-                    loveDao.insert(shop1);
+                loveDao.insert(shop1);
                 Toast.makeText(this, "成功插入", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.delete:
-                loveDao.delete(shop1);//无法删除数据？
+            case R.id.delete://这里的删除的通过传入的id进行删除
+                String s1 = id.getText().toString();
+                Long aLong1 = Long.valueOf(s1);
+                loveDao.deleteByKey(aLong1);
                 break;
             case R.id.update:
                 shop1.setName(name.getText().toString());
@@ -80,7 +82,7 @@ public class MainActivity extends Activity {
                     tv.setText(load.getName()+"-----" + load.getAddress());
 
                 }else{
-                    Toast.makeText(this,"没有该数据",Toast.LENGTH_SHORT).show();
+                    tv.setText("没有该数据");
                 }
                 break;
         }
