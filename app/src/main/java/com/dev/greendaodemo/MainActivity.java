@@ -4,14 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dev.greendaodemo.bean.Shop;
 import com.dev.greendaodemo.global.BaseApplication;
 import com.wyk.greendaodemo.greendao.gen.ShopDao;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,6 +32,14 @@ public class MainActivity extends Activity {
     Button query;
     @Bind(R.id.tv)
     TextView tv;
+    @Bind(R.id.id)
+    EditText id;
+    @Bind(R.id.name)
+    EditText name;
+    @Bind(R.id.address)
+    EditText address;
+    @Bind(R.id.activity_main)
+    LinearLayout activityMain;
     private ShopDao loveDao;
 
     @Override
@@ -43,40 +51,37 @@ public class MainActivity extends Activity {
 
     @OnClick({R.id.insert, R.id.delete, R.id.update, R.id.query})
     public void onClick(View view) {
-       if(loveDao==null){
-           loveDao=BaseApplication.getDaoInstant().getShopDao();
-       }
-        final Shop shop=new Shop();
+        if (loveDao == null) {
+            loveDao = BaseApplication.getDaoInstant().getShopDao();
+        }
+
+        Shop shop1 = new Shop();
         switch (view.getId()) {
             case R.id.insert:
-
-                shop.setAddress("济南");
-                shop.setName("哎呦  啊");
-                shop.setSell_num("10");
-                shop.setPrice("20");
-                shop.setImage_url("null");
-                shop.setId(1);
-                loveDao.insertOrReplace(shop);
-                Toast.makeText(this,"成功插入",Toast.LENGTH_SHORT).show();
+                   shop1.setAddress(address.getText().toString());
+                    shop1.setName(name.getText().toString());
+                shop1.setId(Integer.parseInt(id.getText().toString()));
+                    loveDao.insert(shop1);
+                Toast.makeText(this, "成功插入", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.delete:
-                loveDao.delete(shop);//无法删除数据？
+                loveDao.delete(shop1);//无法删除数据？
                 break;
             case R.id.update:
-                shop.setName("lisi");
-                loveDao.updateInTx(shop);//为什么这么更新后的数据没有变化？
-                Toast.makeText(this,"更新",Toast.LENGTH_SHORT).show();
+                shop1.setName(name.getText().toString());
+                loveDao.update(shop1);//为什么这么更新后的数据没有变化？
+                Toast.makeText(this, "更新", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.query:
-                List<Shop> shops = loveDao.loadAll();
-                if(shops.size()==0&&shops.isEmpty()){
-                    Toast.makeText(this,"数据库为空",Toast.LENGTH_SHORT).show();
-                }
-                for (int i = 0; i <shops.size() ; i++) {
-                    Shop shop1 = shops.get(i);
-                    tv.setText(shop1.getName()+shop1.getAddress()+shop1.getImage_url()+shop1.getImage_url());
-                }
+                String s = id.getText().toString();
+                Long aLong = Long.valueOf(s);
+                Shop load = loveDao.load(aLong);
+                if(load!=null){
+                    tv.setText(load.getName()+"-----" + load.getAddress());
 
+                }else{
+                    Toast.makeText(this,"没有该数据",Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }

@@ -6,30 +6,48 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.dev.greendaodemo.MainActivity">
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="插入"
-        android:id="@+id/insert"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="删除"
-        android:id="@+id/delete"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="更新"
-        android:id="@+id/update"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="查询"
-        android:id="@+id/query"
-        />
+    <LinearLayout
+      style="@style/ll">
+        <EditText
+            android:id="@+id/id"
+            style="@style/et"
+            android:hint="id号"
+            />
+        <EditText
+            android:id="@+id/name"
+            style="@style/et"
+            android:hint="name"
+            />
+        <EditText
+            android:id="@+id/address"
+            style="@style/et"
+            android:hint="address"
+            />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/ll">
+        <Button
+           style="@style/btn_style"
+            android:text="插入"
+            android:id="@+id/insert"
+            />
+        <Button
+            style="@style/btn_style"
+            android:text="删除"
+            android:id="@+id/delete"
+            />
+        <Button
+            style="@style/btn_style"
+            android:text="更新"
+            android:id="@+id/update"
+            />
+        <Button
+            style="@style/btn_style"
+            android:text="查询"
+            android:id="@+id/query"
+            />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tv"
