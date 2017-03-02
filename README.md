@@ -1,7 +1,7 @@
 # GreenDaoDemo
-[借鉴地址](http://www.tuicool.com/articles/iUfUBn6)
-[greendao的官方网站](http://greenrobot.org/greendao/)
-[greendao的github地址](https://github.com/greenrobot/greenDAO)
+[借鉴地址](http://www.tuicool.com/articles/iUfUBn6)<br>
+[greendao的官方网站](http://greenrobot.org/greendao/)<br>
+[greendao的github地址](https://github.com/greenrobot/greenDAO)<br>
 ##Greendao的简单使用
 ###基于GreenDao3.2的简单基本使用，目前只实现了数据的插入的简单查询，在以后会不断的进行补充。
 ##GreenDao的基本的使用流程：
