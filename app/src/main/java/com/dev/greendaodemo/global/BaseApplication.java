@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.facebook.stetho.Stetho;
 import com.wyk.greendaodemo.greendao.gen.DaoMaster;
 import com.wyk.greendaodemo.greendao.gen.DaoSession;
 
@@ -27,6 +28,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mContext  = this;
+        Stetho.initializeWithDefaults(mContext);
         setUpDataBase();
     }
     public static DaoSession getDaoInstant(){
