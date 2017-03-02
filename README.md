@@ -30,4 +30,16 @@ buildscript {
 }
 ```
 
-2.添加完依赖，编译一下，应该是没有没有什么不对的地方，接下来就可以创建实体类，创建bean类，在输入属性
+####2.添加完依赖，编译一下，应该是没有没有什么不对的地方，接下来就可以创建实体类，创建bean类，在输入属性在greendao3.2中会自动生成DaoMaster,XXXDao,DaoSession
+####3.接下来就是创建数据库
+```java
+//创建数据库
+        DaoMaster.DevOpenHelper helper=new DaoMaster.DevOpenHelper(mContext,"shop.db",null);
+        //获取可写的数据库
+        SQLiteDatabase db=helper.getWritableDatabase();
+        //获取数据库对象
+        DaoMaster daoMaster=new DaoMaster(db);
+        //获取数据库对象管里者
+        daoSession=daoMaster.newSession();
+```
+####4进行数据库的操作：增，删，改，查
