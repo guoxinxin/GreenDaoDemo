@@ -70,20 +70,14 @@ public class MainActivity extends Activity {
                 loveDao.deleteByKey(aLong1);
                 break;
             case R.id.update:
-                shop1.setName(name.getText().toString());
-                loveDao.update(shop1);//为什么这么更新后的数据没有变化？
-                Toast.makeText(this, "更新", Toast.LENGTH_SHORT).show();
+               //更新的这里逻辑没有弄清，不知如何下手
                 break;
             case R.id.query:
                 String s = id.getText().toString();
-                Long aLong = Long.valueOf(s);
-                Shop load = loveDao.load(aLong);
-                if(load!=null){
-                    tv.setText(load.getName()+"-----" + load.getAddress());
+                int i = Integer.parseInt(s);
+                Shop load = loveDao.load((long) i);
+                tv.setText(load.getName());
 
-                }else{
-                    tv.setText("没有该数据");
-                }
                 break;
         }
     }
