@@ -75,6 +75,11 @@ public class MainActivity extends Activity {
                 break;
             case R.id.update:
                //更新的这里逻辑没有弄清，不知如何下手
+                Shop shop=new Shop();
+                shop.setAddress("jianan");
+                shop.setName("Alibaba");
+                shop.setId(1);
+                loveDao.update(shop);
                 break;
             case R.id.query:
 //                String s = id.getText().toString();
@@ -83,8 +88,8 @@ public class MainActivity extends Activity {
 //                tv.setText(load.getName());
 
                 QueryBuilder qb=loveDao.queryBuilder();
-                List 济南 = qb.where(ShopDao.Properties.Address.eq("济南")).orderAsc(ShopDao.Properties.Name).list();//返回查询的结果
-                tv.setText(济南.size()+"");
+                List citys = qb.where(ShopDao.Properties.Address.eq("jinan")).orderAsc(ShopDao.Properties.Name).list();//返回查询的结果
+                tv.setText(citys.size()+"");
 
                 break;
         }
