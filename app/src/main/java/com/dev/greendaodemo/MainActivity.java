@@ -13,6 +13,10 @@ import com.dev.greendaodemo.bean.Shop;
 import com.dev.greendaodemo.global.BaseApplication;
 import com.wyk.greendaodemo.greendao.gen.ShopDao;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -73,10 +77,14 @@ public class MainActivity extends Activity {
                //更新的这里逻辑没有弄清，不知如何下手
                 break;
             case R.id.query:
-                String s = id.getText().toString();
-                int i = Integer.parseInt(s);
-                Shop load = loveDao.load((long) i);
-                tv.setText(load.getName());
+//                String s = id.getText().toString();
+//                int i = Integer.parseInt(s);
+//                Shop load = loveDao.load((long) i);
+//                tv.setText(load.getName());
+
+                QueryBuilder qb=loveDao.queryBuilder();
+                List 济南 = qb.where(ShopDao.Properties.Address.eq("济南")).orderAsc(ShopDao.Properties.Name).list();//返回查询的结果
+                tv.setText(济南.size()+"");
 
                 break;
         }
