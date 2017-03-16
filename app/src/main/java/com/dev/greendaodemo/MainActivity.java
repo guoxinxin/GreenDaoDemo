@@ -75,11 +75,10 @@ public class MainActivity extends Activity {
                 break;
             case R.id.update:
                //更新的这里逻辑没有弄清，不知如何下手
-                Shop shop=new Shop();
-                shop.setAddress("jianan");
-                shop.setName("Alibaba");
-                shop.setId(1);
-                loveDao.update(shop);
+                shop1.setAddress("天津");
+                shop1.setName("Alibaba");
+                shop1.setId(3);
+                loveDao.update(shop1);
                 break;
             case R.id.query:
 //                String s = id.getText().toString();
